@@ -1,4 +1,4 @@
-import requests as r
+import requests as rq
 import pandas as pd
 
 #end point
@@ -10,7 +10,7 @@ params = {
     "current_weather": True
 }
 
-response = r.get(url, params=params)
+response = rq.get(url, params=params)
 
 data = response.json()
 
