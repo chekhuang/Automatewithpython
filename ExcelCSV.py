@@ -3,7 +3,7 @@ import sqlite3
 import os
 
 #  Input file path
-input_file =  "input.csv"
+input_file = "data/input.csv"
 
 #  Ensure output folder exists
 os.makedirs("output", exist_ok=True)
@@ -38,7 +38,7 @@ df.to_csv(output_path, index=False)
 print(" Saved cleaned file:", output_path)
 
 # Insert into SQLite
-conn = sqlite3.connect("data.db")
+conn = sqlite3.connect("data/data.db")
 df.to_sql("processed_data", conn, if_exists="append", index=False)
 conn.close()
 print(" Data inserted into SQLite")
@@ -53,3 +53,10 @@ with pd.ExcelWriter(report_path) as writer:
     summary.to_excel(writer, sheet_name="Summary")
 
 print(" Excel report created:", report_path)
+
+# df = pd.read_csv("data/input.csv")
+#
+# conn = sqlite3.connect("data/test.db")
+# df.to_sql("user", conn, if_exists="replace", index=False)
+#
+# conn.close()

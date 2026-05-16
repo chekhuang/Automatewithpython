@@ -1,40 +1,38 @@
 import sqlite3
-
-conn=sqlite3.connect("test.db")
-cursor=conn.cursor()
-
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS users(
-    name TEXT,
-    age INTEGER,
-    city TEXT
-)
-""")
-conn.commit()
-conn.close()
-
-conn=sqlite3.connect("test.db")
-cursor=conn.cursor()
-
-cursor.execute("INSERT INTO users VALUES('john',25,'Delhi')")
-cursor.execute("INSERT INTO users VALUES('sarah',30,'Mumbai') ")
-
-conn.commit()
-conn.close()
-
 import pandas as pd
-import sqlite3
 
-conn=sqlite3.connect("test.db")
-df=pd.read_sql("SELECT*FROM users",conn)
-print(df)
+conn = sqlite3.connect("./data/test.db")
+cursor = conn.cursor()
 
-conn.close()
+def CreateTb():
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users(
+        name TEXT,
+        age INTEGER,
+        city TEXT
+    )
+    """)
+    conn.commit()
+    conn.close()
 
-df=pd.read_csv("input.csv")
+def InsertData():
+    conn = sqlite3.connect("./data/test.db")
+    cursor=conn.cursor()
 
-conn=sqlite3.connect("test.db")
-df.to_sql("user",conn,if_exists="replace",
-index=False)
+    cursor.execute("INSERT INTO users VALUES('CK',25,'Delhi')")
+    cursor.execute("INSERT INTO users VALUES('KA',30,'Mumbai') ")
 
-conn.close()
+    conn.commit()
+    conn.close()
+
+def ReadData():
+
+    conn=sqlite3.connect("./data/test.db")
+    df=pd.read_sql("SELECT * FROM users",conn)
+    conn.close()
+    print(df)
+
+CreateTb()
+InsertData()
+ReadData()
+

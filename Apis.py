@@ -28,7 +28,7 @@ print(filtered)
 
 import sqlite3
 
-conn=sqlite3.connect("test.db")
+conn=sqlite3.connect("data/test.db")
 df.to_sql("api_posts",conn,if_exists="replace",
 index=False)
 conn.close()

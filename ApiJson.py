@@ -1,6 +1,10 @@
 import requests
 import pandas as pd
 import os
+# import requests
+# import pandas as pd
+# import requests
+# import pandas as pd
 
 url = "https://jsonplaceholder.typicode.com/users"
 data = requests.get(url).json()
@@ -19,9 +23,6 @@ subset = subset.rename(columns={
 print(subset.head())
 df.to_csv("output/users.csv", index=False)
 
-import requests
-import pandas as pd
-
 url = "https://randomuser.me/api/?results=5"
 data = requests.get(url).json()
 
@@ -31,11 +32,7 @@ df = pd.json_normalize(results)
 
 #select only name and email
 
-
 print(df[["name.first", "email"]])
-
-import requests
-import pandas as pd
 
 all_data = []
 
